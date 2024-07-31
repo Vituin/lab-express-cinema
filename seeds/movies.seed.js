@@ -1,12 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const Movies = require(`../models/Movie.model`)
-const Movie = require(`../models/Movie.model`)
-
-/* GET home page */
-router.get('/', (req, res, next) => {
-    res.render('index')
-});
+// To insert in "seeds/movies.seed.js"
+const mongoose = require('mongoose')
+const Movie = require('../models/Movie.model')
 
 const movies = [
     {
@@ -91,17 +85,9 @@ const movies = [
     }
 ];
 
-router.get(`/save-database`, (req, res) => {
-    Movie.create(movies).then((data) => {
-        console.log(`Movies created`)
-        res.render(`/`)
-    })
+// Add here the script that will be run to actually seed the database (feel free to refer to the previous lesson)
+
+Movie.create(movies).then((data) => {
+    console.log(`Movies created`, data)
 })
 
-router.get(`/movies`, (req, res) => {
-    Movie.find().then((data) => {
-        res.render(`movies`, { movies: data })
-    })
-})
-
-module.exports = router;

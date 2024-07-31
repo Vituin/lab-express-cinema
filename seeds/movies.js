@@ -1,14 +1,4 @@
-const express = require('express');
-const router = express.Router();
-const Movies = require(`../models/Movie.model`)
-const Movie = require(`../models/Movie.model`)
-
-/* GET home page */
-router.get('/', (req, res, next) => {
-    res.render('index')
-});
-
-const movies = [
+[
     {
         title: "A Wrinkle in Time",
         director: "Ava DuVernay",
@@ -90,18 +80,3 @@ const movies = [
         showtimes: ["13:00", "15:30", "18:00", "20:10", "22:40"]
     }
 ];
-
-router.get(`/save-database`, (req, res) => {
-    Movie.create(movies).then((data) => {
-        console.log(`Movies created`)
-        res.render(`/`)
-    })
-})
-
-router.get(`/movies`, (req, res) => {
-    Movie.find().then((data) => {
-        res.render(`movies`, { movies: data })
-    })
-})
-
-module.exports = router;
